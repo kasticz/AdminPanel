@@ -1,0 +1,126 @@
+html{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    width: 100%;
+    margin: 0;
+}
+*{
+    box-sizing: border-box;
+}
+ul{
+    padding: 0;
+}
+li{
+    list-style: none;
+    margin: 0;
+}
+input{
+    border:none;
+    outline: none;
+}
+button{
+    border: none;
+    outline: none;
+   background-color: white;
+   padding: 0;
+   cursor: pointer;
+}
+.nav{
+    width: 20%;
+    background-color: rgb(44 56 62);
+    color: rgb(214 214 214);
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav__title{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10px;
+    color: rgb(214 214 214);
+    text-decoration: none;
+}
+.nav__title img{
+    width: 50px;
+}
+.nav__separator{
+    border-bottom: 1px dashed white;
+}
+
+.nav__admin {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;    
+    position: relative;
+}
+
+.nav__admin img{
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px black;
+}
+.nav__admin div{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.nav__content{
+    padding: 10px 0px;
+}
+.nav__dbs li{
+    list-style: none;
+    width: 95%;
+    margin: 0 auto;       
+    margin-bottom: 10px;  
+}
+.nav__categoryButton{
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    height: 40px;
+}
+.nav__categoryButton:hover,.nav__categoryButton:focus{
+    background-color: #1E90FF;
+    color: white;
+}
+.nav__categoryButton:active{
+    background-color:#1d7ad8;
+    color: white;
+}
+
+.nav__search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+.nav__search input{
+    border-radius: 12px;
+    width: 70%;
+}
+.nav__search input:hover{
+    outline: 1px solid rgb(134, 130, 130); 
+    box-shadow: 2px 2px 2px rgb(134, 130, 130) ;  
+}
+.nav__search button{
+    border-radius: 12px;
+    padding: 10px;
+}
+.nav__search button:hover{
+    background-color: #1E90FF;
+    color: white;
+}
+.nav__search button:active{
+    background-color: #1d7ad8;
+    color: white;
+}
+
+
+
