@@ -1,9 +1,35 @@
 <?php
  require_once 'config/connect.php';
+ require_once 'funcs/formatting.php';
 
- $products = mysqli_query($connect,"SELECT * FROM products WHERE id = 1");
+ $products = mysqli_query($connect,"SELECT * FROM products");
 
- $products = mysqli_fetch_assoc($products);
+ $pAssoc =[];
+
+
+ for($i=0;$i < $products->num_rows;$i++){
+    $pAssoc[] = mysqli_fetch_assoc($products);
+ };
+ $titlesOfFields = array_keys($pAssoc[0]);
+ function formatProducts($p){
+    $p["overview"] = formatoverview($p["overview"]);
+    $p["purchasable"] = formatPurchasable($p["purchasable"]);
+    $p["specials"] = formatSpecials($p["specials"],false);
+    $p["discount"] = formatDiscount($p["discount"]);
+    $p["price"] = $p["price"] . " ₽";
+    $p["productType"] = formatType($p["productType"]);
+    return $p;
+ };
+ 
+ $pAssoc = array_map('formatProducts',$pAssoc);
+ $numberOffields = count($pAssoc[0]);
+
+
+
+
+ mysqli_close($connect);
+
+
 
 
 
@@ -27,8 +53,6 @@
     <title>Document</title>
 </head>
 <body>
-
-
     <nav class="nav">
         <a href="/" class="nav__title">
             <img src="./assets/h1icon.svg" alt="">
@@ -42,8 +66,10 @@
         <div class="nav__separator"></div>
         <div class="nav__search">
             <img src="./assets/search.svg" alt="">
-            <input class="nav__search">
-            <button>Найти</button>
+            <form action="./pages/searchPage.php" method="POST">
+                <input class="nav__search" name="input">
+                <button>Найти</button>    
+            </form>       
         </div>
         <div class="nav__separator"></div>
         <div class="nav__content">
@@ -51,28 +77,54 @@
                 Базы данных
             </div>
             <ul class="nav__dbs">
-                <li><button class="nav__categoryButton">Товары</button> </li>
-                <li> <button class="nav__categoryButton">Пользователи</button></li>
-                <li><button class="nav__categoryButton">Заказы</button></li>
+                <li><a href="./index.php"> <button class="nav__categoryButton">Товары</button> </a> </li>
+                <li> <a href="./pages/users.php"> <button class="nav__categoryButton">Пользователи</button> </a></li>
+                <li><a href="./pages/orders.php"><button class="nav__categoryButton">Заказы</button></a></li>
             </ul>
+            <a href="./pages/createPageProduct.php?mode=create"><button class="nav__create">Создать новый товар</button></a>
         </div>
     </nav>
 
-    <main>
+    <main>        
         <table class="content">
-            <tr>
+            <thead>
+                <tr>
                 <?php
-                foreach($products as $title=>$value){
+                foreach($pAssoc[0] as $title=>$value){
                     ?>
                     <th> <?=  $title ?></th>
                     <?php
-                }
-
+                }                             
                 ?>  
-            </tr>
+                <th>&#9998</th>  
+                <th>&#10006</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+            foreach($pAssoc as $product){
+                    ?>
+                    <tr>
+                        <?php
+                    for($i=0;$i<$numberOffields;$i++){
+                        ?>
+                        <td> <?=  $product[$titlesOfFields[$i]] ?></td>
+                        <?php
+                    } 
+                    ?>
+                        <td><a href="./pages/createPageProduct.php?mode=edit&id=<?php echo $product['id'] ?>"> <button>&#9998</button> </a> </td>  
+                        <td><a href="<?= './db/delete.php?db=products&id=' . $product['id'] ?>"><button>&#10006</button> </a> </td> 
+                    </tr>
+                   
+                    <?php
+                }  
+                ?>
+
+            </tbody>
 
 
         </table>
+
 
     </main>
     

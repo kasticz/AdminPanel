@@ -4,6 +4,9 @@ html{
 body{
     width: 100%;
     margin: 0;
+    background-color: #f6f6f6;
+    display: flex;
+    min-height: 100vh;
 }
 *{
     box-sizing: border-box;
@@ -25,6 +28,9 @@ button{
    background-color: white;
    padding: 0;
    cursor: pointer;
+}
+main{
+    width: 80%;
 }
 .nav{
     width: 20%;
@@ -78,7 +84,7 @@ button{
     margin: 0 auto;       
     margin-bottom: 10px;  
 }
-.nav__categoryButton{
+.nav__categoryButton,.nav__create,.search a button{
     background-color: #fff;
     border-radius: 8px;
     width: 100%;
@@ -86,13 +92,17 @@ button{
     font-size: 15px;
     height: 40px;
 }
-.nav__categoryButton:hover,.nav__categoryButton:focus{
+.nav__categoryButton:hover,.nav__create:hover,.search a button:hover{
     background-color: #1E90FF;
     color: white;
 }
-.nav__categoryButton:active{
+.nav__categoryButton:active,.nav__create:active,.search a button:active{
     background-color:#1d7ad8;
     color: white;
+}
+.nav__create{
+    width: 95%;
+    margin: 0 auto; 
 }
 
 .nav__search{
@@ -100,6 +110,13 @@ button{
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+}
+.nav__search form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 .nav__search input{
     border-radius: 12px;
@@ -124,3 +141,144 @@ button{
 
 
 
+.content{
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.content thead tr:nth-child(1){
+    background-color: rgb(44 56 62);
+    color: rgb(214 214 214);
+}
+.content tbody td{
+    border: 1px solid black
+}
+
+.content th,.content td{
+    min-width: 50px;
+    max-width: 300px;
+    text-align: center;
+}
+.content button{
+    width: 80%;
+    height: 30px;
+    border-radius:12px;
+}
+.content button:hover{
+    background-color: #1E90FF;
+    color: white;
+}
+.content button:active{
+    background-color: #1d7ad8;
+    color: white;
+}
+.create{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;    
+    padding: 20px;
+    position: relative;
+    color:rgb(44 56 62);
+}
+.create__inputWrapper{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: flex-start;
+}
+.create__inputWrapper input,.create__inputWrapper label,.create__inputWrapper textarea{
+    width: 500px;
+    font-size: 20px;
+}
+.create__inputWrapper input,.create__inputWrapper textarea{
+    height: 40px;
+    border-radius:8px;
+    border:1px solid black;
+    margin-top: 10px;
+    color:rgb(44 56 62);
+}
+.create__inputWrapper textarea{
+    height: auto;
+}
+
+.create__inputWrapper input:focus,.create__inputWrapper input:active,.create__inputWrapper textarea:focus,.create__inputWrapper textarea:active{
+    box-shadow: 2px 2px 2px  black;
+}
+
+.create__inputWrapper input[type=checkbox]:focus,.create__inputWrapper input[type=checkbox]:active{
+    box-shadow: none;
+}
+.create__createButton{
+    width: 400px;
+    font-size: 20px;    
+    height: 50px;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius:8px;
+    background-color: rgb(155, 155, 155);
+}
+.create__createButton:hover{
+    background-color: #1E90FF;
+    color: white;
+}
+.create__createButton:active{
+    background-color: #1d7ad8;
+    color: white;
+}
+.search{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    min-height: 100vh;
+    background-color:rgb(44 56 62);
+}
+
+.search__item{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color:rgb(44 56 62);
+    border: 1px solid black;
+    margin-bottom: 20px;
+    background-color: #f6f6f6;
+    width: 100%;
+    padding: 10px 0px;
+    position: relative;
+    min-height: 500px;
+}
+.search__itemField{
+    border: 1px solid black;
+    padding: 10px;    
+    min-width: 100px;
+    margin-top: 10px;
+}
+
+.search__item h4,.search__item p{    
+    font-size: 20px;
+    text-align: center;
+}
+.search__item h4{
+    margin: 0 auto;
+}
+.search__overview{
+    width: 100%;
+    margin-top: 20px;
+   
+}
+.search__overview p{
+    max-width: none;
+}
+.search a{
+    margin-top: 20px;
+    margin-right: 50px;
+}
+.search a button{
+    background-color: rgb(155, 155, 155);
+    padding: 10px;
+    height: 50px;
+    width: 200px;
+}
